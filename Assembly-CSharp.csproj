@@ -57,6 +57,15 @@
   <ItemGroup>
      <Compile Include="Assets\AWS\Examples\S3Example.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\AWSManager.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Case.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Interface\IPannel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\ClientInfoPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\LocationPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\OverviewPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\SearchPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\SelectPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\TakePhotoPanel.cs" />
+     <Compile Include="Assets\Insurance App\assets\Scripts\UIManager.cs" />
      <None Include="Assets\AWS\Examples\License.txt" />
      <None Include="Assets\AWS\Plugins\Android\AndroidManifest.xml" />
  <Reference Include="Unity.Timeline.Editor">
