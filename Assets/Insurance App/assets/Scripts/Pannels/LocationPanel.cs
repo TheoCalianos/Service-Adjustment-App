@@ -14,15 +14,46 @@ public class LocationPanel : MonoBehaviour, IPanel
 
   public string apiKey;
 
-  public void OnEnable()
+  public IEnumerator Start()
   {
-     url = url + "center=" + xCord + "," + yCord + "&zoom=" + zoom + "&size=" + imgSize + "x" + imgSize + "&key=" + apiKey;
-     Debug.LogError(url);
+    if(Input.location.isEnabledByUser == true)
+    {
+      Input.location.Start();
+
+      int maxWait= 20;
+      while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0 )
+      {
+        yield return new WaitForSeconds(1.0f);
+        maxWait--;
+      }
+      if(maxWait < 1)
+      {
+        Debug.LogError("Timed Out");
+        yield break;
+      }
+      else if(Input.location.status == LocationServiceStatus.Failed)
+      {
+        Debug.LogError("Failed to recive Location status");
+      }
+      else
+      {
+         xCord = Input.location.lastData.latitude;
+         yCord = Input.location.lastData.longitude;
+      }
+
+      Input.location.Stop();
+
+    }
+    else
+    {
+      Debug.LogError("location services are not enabled.");
+    }
      StartCoroutine(GetLocationRoutine());
 
   }
   IEnumerator GetLocationRoutine()
   {
+    url = url + "center=" + xCord + "," + yCord + "&zoom=" + zoom + "&size=" + imgSize + "x" + imgSize + "&key=" + apiKey;
     using(WWW map = new WWW(url))
     {
       yield return map;
