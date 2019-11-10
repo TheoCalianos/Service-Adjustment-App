@@ -11,11 +11,17 @@ public class LocationPanel : MonoBehaviour, IPanel
   public int zoom;
   public int imgSize;
   public string url = "https://maps.googleapis.com/maps/api/staticmap?";
-
+  public Text caseNumberText;
+  public InputField LocationNotes;
   public string apiKey;
 
+  public void OnEnable()
+  {
+      caseNumberText.text = UIManager.Instance.activeCase.CaseId;
+  }
   public IEnumerator Start()
   {
+
     if(Input.location.isEnabledByUser == true)
     {
       Input.location.Start();
@@ -46,7 +52,7 @@ public class LocationPanel : MonoBehaviour, IPanel
     }
     else
     {
-      Debug.LogError("location services are not enabled.");
+      //Debug.LogError("location services are not enabled.");
     }
      StartCoroutine(GetLocationRoutine());
 
@@ -69,6 +75,10 @@ public class LocationPanel : MonoBehaviour, IPanel
   }
   public void ProcessInfo()
   {
-
+    if (string.IsNullOrEmpty(LocationNotes.text) == false)
+    {
+      UIManager.Instance.activeCase.locationNotes = LocationNotes.text;
+    }
+    UIManager.Instance.TakePhotoPanel.gameObject.SetActive(true);
   }
 }

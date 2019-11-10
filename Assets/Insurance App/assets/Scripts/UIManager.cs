@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
   public ClientInfoPanel clientInfoPanel;
   public GameObject borderPanel;
   public LocationPanel LocationPanel;
+  public TakePhotoPanel TakePhotoPanel;
+  public OverviewPanel OverviewPanel;
   private void Awake()
   {
     _instance = this;
