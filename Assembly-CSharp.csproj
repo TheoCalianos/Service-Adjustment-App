@@ -56,6 +56,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AWS\Examples\S3Example.cs" />
+     <Compile Include="Assets\Insurance App\assets\Plugins\NativeCamera\Android\NCCallbackHelper.cs" />
+     <Compile Include="Assets\Insurance App\assets\Plugins\NativeCamera\Android\NCCameraCallbackAndroid.cs" />
+     <Compile Include="Assets\Insurance App\assets\Plugins\NativeCamera\Android\NCPermissionCallbackAndroid.cs" />
+     <Compile Include="Assets\Insurance App\assets\Plugins\NativeCamera\iOS\NCCameraCallbackiOS.cs" />
+     <Compile Include="Assets\Insurance App\assets\Plugins\NativeCamera\NativeCamera.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\AWSManager.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\Case.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\Interface\IPannel.cs" />
@@ -66,6 +71,7 @@
      <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\SelectPanel.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\Pannels\TakePhotoPanel.cs" />
      <Compile Include="Assets\Insurance App\assets\Scripts\UIManager.cs" />
+     <None Include="Assets\Insurance App\assets\Plugins\NativeCamera\README.txt" />
      <None Include="Assets\AWS\Examples\License.txt" />
      <None Include="Assets\AWS\Plugins\Android\AndroidManifest.xml" />
  <Reference Include="Unity.Timeline.Editor">
