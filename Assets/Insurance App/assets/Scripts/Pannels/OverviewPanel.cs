@@ -20,7 +20,10 @@ public class OverviewPanel : MonoBehaviour, IPanel
       dateTitle.text = DateTime.Today.ToString();
       location.text = UIManager.Instance.activeCase.location;
       locationNotes.text = "LOCATION NOTES: \n" + UIManager.Instance.activeCase.locationNotes;
-      photoTaken.texture = UIManager.Instance.activeCase.photoTaken;
+      Texture2D reconstructedImage = new Texture2D(1,1);
+      reconstructedImage.LoadImage(UIManager.Instance.activeCase.photoTaken);
+
+      photoTaken.texture = (Texture)reconstructedImage;
       photoNotes.text = "PHOTO NOTES: \n" + UIManager.Instance.activeCase.photoNotes;
 
   }

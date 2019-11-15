@@ -8,6 +8,7 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
   public RawImage photoTaken;
   public InputField photoNotes;
   public Text caseNumberText;
+  private string imgPath;
 
   public void OnEnable()
   {
@@ -15,7 +16,17 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
   }
   public void ProcessInfo()
   {
-      UIManager.Instance.activeCase.photoTaken = photoTaken.texture;
+
+    if(string.IsNullOrEmpty(imgPath) == false)
+    {
+      Texture2D img = (Texture2D)NativeCamera.LoadImageAtPath(imgPath, 512, false);
+      byte[] imgData = img.EncodeToPNG();
+      UIManager.Instance.activeCase.photoTaken = imgData;
+    }
+    else
+    {
+      UIManager.Instance.activeCase.photoTaken = null;
+    }
       UIManager.Instance.activeCase.photoNotes = photoNotes.text;
       UIManager.Instance.OverviewPanel.gameObject.SetActive(true);
   }
@@ -31,7 +42,7 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
 		if( path != null )
 		{
 			// Create a Texture2D from the captured image
-			Texture2D texture = NativeCamera.LoadImageAtPath( path, maxSize );
+			Texture2D texture = NativeCamera.LoadImageAtPath( path, maxSize, false);
 			if( texture == null )
 			{
 				Debug.Log( "Couldn't load texture from " + path );
@@ -40,6 +51,7 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
 
       photoTaken.texture = texture;
       photoTaken.gameObject.SetActive(true);
+      imgPath = path;
 			// Assign texture to a temporary quad and destroy it after 5 seconds
 		}
 	}, maxSize );
