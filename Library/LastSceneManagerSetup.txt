@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/AWS/Examples/S3Example.unity
+- path: Assets/Insurance App/assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

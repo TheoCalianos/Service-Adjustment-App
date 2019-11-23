@@ -52,10 +52,13 @@ public class UIManager : MonoBehaviour
     awsCase.photoNotes = activeCase.photoNotes;
 
     BinaryFormatter bf = new BinaryFormatter();
-    FileStream file = File.Create(Application.persistentDataPath + "/case#"+ awsCase.CaseId + ".dat");
+    string filePath = Application.persistentDataPath + "/case#"+ awsCase.CaseId + ".dat";
+    FileStream file = File.Create(filePath);
     bf.Serialize(file, awsCase);
     file.Close();
 
     //Debug.Log(Application.persistentDataPath);
+
+    
   }
 }
