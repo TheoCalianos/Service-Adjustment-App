@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     file.Close();
 
     //Debug.Log(Application.persistentDataPath);
+    AWSManager.Instance.UploadToS3(filePath, awsCase.CaseId);
 
-    
   }
 }

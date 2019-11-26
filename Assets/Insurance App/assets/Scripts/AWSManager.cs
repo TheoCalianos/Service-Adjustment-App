@@ -11,6 +11,7 @@ using Amazon.S3.Util;
 using System.Collections.Generic;
 using Amazon.CognitoIdentity;
 using Amazon;
+using UnityEngine.SceneManagement;
 
 public class AWSManager : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class AWSManager : MonoBehaviour
       UnityInitializer.AttachToGameObject(this.gameObject);
       AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
 
-      S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
+      /*S3Client.ListBucketsAsync(new ListBucketsRequest(), (responseObject) =>
       {
           if (responseObject.Exception == null)
          {
@@ -72,6 +73,31 @@ public class AWSManager : MonoBehaviour
          {
             Debug.Log("AWS ERROR" + responseObject.Exception);
          }
-       });
+       });*/
+    }
+
+    public void UploadToS3(string path, string fileName)
+    {
+      FileStream stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
+      PostObjectRequest request = new PostObjectRequest()
+      {
+        Bucket = "serviceappcasefiles123",
+        Key = "/case#"+ fileName,
+        InputStream = stream,
+        CannedACL = S3CannedACL.Private,
+        Region = _S3Region
+      };
+
+      S3Client.PostObjectAsync(request, (responseObject) =>
+      {
+        if(responseObject.Exception == null)
+        {
+          Debug.Log("posted to bucket.");
+          SceneManager.LoadScene(0);
+        }
+        else {
+          Debug.Log("Execption occured" + responseObject.Exception);
+        }
+      });
     }
 }
