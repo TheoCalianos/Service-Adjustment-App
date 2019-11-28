@@ -8,6 +8,6 @@ public class SearchPanel : MonoBehaviour, IPanel
   public InputField caseNumberInput;
   public void ProcessInfo()
   {
-
+    AWSManager.Instance.GetList(caseNumberInput.text);
   }
 }

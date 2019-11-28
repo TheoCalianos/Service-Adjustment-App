@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using Amazon.CognitoIdentity;
 using Amazon;
 using UnityEngine.SceneManagement;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class AWSManager : MonoBehaviour
 {
@@ -82,7 +84,7 @@ public class AWSManager : MonoBehaviour
       PostObjectRequest request = new PostObjectRequest()
       {
         Bucket = "serviceappcasefiles123",
-        Key = "/case#"+ fileName,
+        Key = "case#"+ fileName,
         InputStream = stream,
         CannedACL = S3CannedACL.Private,
         Region = _S3Region
@@ -98,6 +100,59 @@ public class AWSManager : MonoBehaviour
         else {
           Debug.Log("Execption occured" + responseObject.Exception);
         }
+      });
+    }
+    public void GetList(string casenumber)
+    {
+      string target = "case#" + casenumber;
+      var request = new ListObjectsRequest()
+      {
+        BucketName = "serviceappcasefiles123"
+      };
+      S3Client.ListObjectsAsync(request, (requestObject) =>
+      {
+          if (requestObject.Exception == null)
+          {
+            bool caseFound = requestObject.Response.S3Objects.Any(obj => obj.Key == target);
+            if(caseFound == true)
+            {
+              Debug.Log("case found");
+              S3Client.GetObjectAsync("serviceappcasefiles123", target, (responseObj) =>
+              {
+                if(responseObj.Response.ResponseStream != null)
+                {
+                  byte[] data = null;
+                  using (StreamReader reader = new StreamReader(responseObj.Response.ResponseStream))
+                  {
+                    using(MemoryStream memory = new MemoryStream())
+                    {
+                      var buffer = new byte[512];
+                      var bytesRead = default(int);
+                      while((bytesRead = reader.BaseStream.Read(buffer, 0, buffer.Length)) > 0)
+                      {
+                        memory.Write(buffer, 0, bytesRead);
+                      }
+                      data = memory.ToArray();
+                    }
+                  }
+                  using(MemoryStream memory = new MemoryStream(data))
+                  {
+                      BinaryFormatter bf = new BinaryFormatter();
+                      Case downloadedCase = (Case)bf.Deserialize(memory);
+                      Debug.Log(downloadedCase.name);
+                  }
+                }
+              });
+            }
+            else
+            {
+              Debug.Log("case not found");
+            }
+          }
+          else
+          {
+            Debug.Log(requestObject.Exception);
+          }
       });
     }
 }
