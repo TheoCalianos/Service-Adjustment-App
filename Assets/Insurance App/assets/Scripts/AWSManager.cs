@@ -102,7 +102,7 @@ public class AWSManager : MonoBehaviour
         }
       });
     }
-    public void GetList(string casenumber)
+    public void GetList(string casenumber, Action onComplete = null)
     {
       string target = "case#" + casenumber;
       var request = new ListObjectsRequest()
@@ -140,6 +140,11 @@ public class AWSManager : MonoBehaviour
                       BinaryFormatter bf = new BinaryFormatter();
                       Case downloadedCase = (Case)bf.Deserialize(memory);
                       Debug.Log(downloadedCase.name);
+                      UIManager.Instance.activeCase = downloadedCase;
+                      if(onComplete != null)
+                      {
+                        onComplete();
+                      }
                   }
                 }
               });
