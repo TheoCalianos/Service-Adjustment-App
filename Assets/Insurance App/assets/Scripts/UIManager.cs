@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
       return _instance;
     }
   }
+  public List<GameObject> listObjects;
+  public int couter = 0;
   public Case activeCase;
   public ClientInfoPanel clientInfoPanel;
   public GameObject borderPanel;

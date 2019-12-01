@@ -12,6 +12,12 @@ public class SearchPanel : MonoBehaviour, IPanel
     AWSManager.Instance.GetList(caseNumberInput.text, () =>
     {
       SelectPanel.gameObject.SetActive(true);
+      if(UIManager.Instance.listObjects.Contains(SelectPanel.gameObject)){}
+      else
+      {
+        UIManager.Instance.listObjects.Add(SelectPanel.gameObject);
+        UIManager.Instance.couter ++;
+      }
     });
   }
 }

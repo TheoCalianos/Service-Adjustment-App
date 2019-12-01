@@ -96,6 +96,8 @@ public class AWSManager : MonoBehaviour
         {
           Debug.Log("posted to bucket.");
           SceneManager.LoadScene(0);
+          UIManager.Instance.couter = 0;
+          UIManager.Instance.listObjects.Clear();
         }
         else {
           Debug.Log("Execption occured" + responseObject.Exception);

@@ -12,6 +12,13 @@ public class SelectPanel : MonoBehaviour, IPanel
   }
   public void ProcessInfo()
   {
-
+    UIManager.Instance.OverviewPanel.gameObject.SetActive(true);
+    if(UIManager.Instance.listObjects.Contains(UIManager.Instance.OverviewPanel.gameObject))
+    {}
+    else
+    {
+      UIManager.Instance.listObjects.Add(UIManager.Instance.OverviewPanel.gameObject);
+      UIManager.Instance.couter ++;
+    }
   }
 }

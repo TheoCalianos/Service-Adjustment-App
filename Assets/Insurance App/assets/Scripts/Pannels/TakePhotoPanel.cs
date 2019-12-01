@@ -29,6 +29,13 @@ public class TakePhotoPanel : MonoBehaviour, IPanel
     }
       UIManager.Instance.activeCase.photoNotes = photoNotes.text;
       UIManager.Instance.OverviewPanel.gameObject.SetActive(true);
+      Debug.Log(UIManager.Instance.couter);
+      if(UIManager.Instance.listObjects.Contains(UIManager.Instance.OverviewPanel.gameObject)){}
+      else
+      {
+        UIManager.Instance.listObjects.Add(UIManager.Instance.OverviewPanel.gameObject);
+        UIManager.Instance.couter ++;
+      }
   }
   public void TakePictureButton()
   {

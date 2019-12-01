@@ -913,16 +913,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2038628501}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 878123193}
+        m_MethodName: ProcessInfo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &93477756
 MonoBehaviour:
@@ -2185,7 +2185,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 329378934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1615939212}
+        m_MethodName: backButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &329378934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5665,6 +5676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a45e17c12a1b549abad27b51a8f638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listObjects: []
+  couter: 0
   activeCase:
     CaseId: asfdasda
     name: sdfasdf
@@ -7843,7 +7856,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2025002898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1615939212}
+        m_MethodName: forwardButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2025002898
 MonoBehaviour:
   m_ObjectHideFlags: 0

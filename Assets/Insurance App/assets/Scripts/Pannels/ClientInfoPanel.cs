@@ -28,6 +28,13 @@ public class ClientInfoPanel : MonoBehaviour, IPanel
     {
       UIManager.Instance.activeCase.name = firstName.text + " " + lastName.text;
       UIManager.Instance.LocationPanel.gameObject.SetActive(true);
+      Debug.Log(UIManager.Instance.couter);
+      if(UIManager.Instance.listObjects.Contains(UIManager.Instance.LocationPanel.gameObject)){}
+      else
+      {
+        UIManager.Instance.listObjects.Add(UIManager.Instance.LocationPanel.gameObject);
+        UIManager.Instance.couter ++;
+      }
     }
   }
 }

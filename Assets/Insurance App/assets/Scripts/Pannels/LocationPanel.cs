@@ -100,7 +100,12 @@ public class LocationPanel : MonoBehaviour, IPanel
       UIManager.Instance.activeCase.locationNotes = LocationNotes.text;
     }
     UIManager.Instance.TakePhotoPanel.gameObject.SetActive(true);
-
-
+    if(UIManager.Instance.listObjects.Contains(UIManager.Instance.TakePhotoPanel.gameObject)){}
+    else
+    Debug.Log(UIManager.Instance.couter);
+    {
+      UIManager.Instance.listObjects.Add(UIManager.Instance.TakePhotoPanel.gameObject);
+      UIManager.Instance.couter ++;
+    }
   }
 }
